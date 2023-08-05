@@ -20,7 +20,9 @@ This lab focuses on leveraging InSpec, a powerful open-source framework, to impl
 <h2>Program walk-through:</h2>
 
 Download the Inspec debian package from the InSpec website: <br/>
-- wget https://packages.chef.io/files/stable/inspec/4.37.8/ubuntu/18.04/inspec_4.37.8-1_amd64.deb
+```
+wget https://packages.chef.io/files/stable/inspec/4.37.8/ubuntu/18.04/inspec_4.37.8-1_amd64.deb
+```
 <br/>
  
 <p align="center">
@@ -31,8 +33,9 @@ Download the Inspec debian package from the InSpec website: <br/>
 <br />
 
 Install the downloaded package: <br/>
-- dpkg -i inspec_4.37.8-1_amd64.deb<br/>
- 
+```
+dpkg -i inspec_4.37.8-1_amd64.deb
+``` 
 <p align="center">
 <img src="https://i.imgur.com/w2W22hz.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -41,8 +44,9 @@ Install the downloaded package: <br/>
 <br />
 
 We have successfully installed the Inspec tool, let’s explore the functionality it provides us: <br/>
-- inspec --help<br/>
- 
+```
+inspec --help
+``` 
 <p align="center">
 <img src="https://i.imgur.com/I1eiE5R.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -51,8 +55,9 @@ We have successfully installed the Inspec tool, let’s explore the functionalit
 <br />
 
 Let’s try to check whether our servers follow the linux-baseline best practices. We will be using the Dev-Sec’s linux-baseline Inspec profile. Before executing the profile, we need to run the below command: <br/>
-- echo "StrictHostKeyChecking accept-new" >> ~/.ssh/config<br/>
- 
+```
+echo "StrictHostKeyChecking accept-new" >> ~/.ssh/config
+``` 
 <p align="center">
 <img src="https://i.imgur.com/Ya09I4Q.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -61,8 +66,9 @@ Let’s try to check whether our servers follow the linux-baseline best practice
 <br />
 
 Let’s run the Inspec against the production server: <br/>
-- inspec exec https://github.com/dev-sec/linux-baseline -t ssh://root@prod-rcgsg0ei -i ~/.ssh/id_rsa --chef-license accept<br/>
- 
+```
+inspec exec https://github.com/dev-sec/linux-baseline -t ssh://root@prod-rcgsg0ei -i ~/.ssh/id_rsa --chef-license accept<br/>
+``` 
 <p align="center">
 <img src="https://i.imgur.com/xnId0VP.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
@@ -81,7 +87,7 @@ Get priv key: <br/>
 <br />
 
 
-Add the following key/value pair in the form: <br/>
+Add the following key/value pair in the Varible section of the GitLab environment: <br/>
  
 <p align="center">
 <img src="https://i.imgur.com/FnSbOnk.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
@@ -91,11 +97,14 @@ Add the following key/value pair in the form: <br/>
 <br />
 <br />
 
-Use hysnsec/inspec docker image to perform continuous compliance scanning with https://github.com/dev-sec/linux-baseline profile and embed it as part of the prod stage with job name as inspec: <br/>
+Use hysnsec/inspec docker image to perform continuous compliance scanning with our production server and embed it as part of the prod stage with job name as inspec: <br/>
  
 <p align="center">
 <img src="https://i.imgur.com/0URcS3L.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
-<br /> Results: <br />
+</p>
+<br /> 
+Results: <br />
+<p align="center">
 <img src="https://i.imgur.com/R4lg95k.png" height="80%" width="80%" alt="Disk Sanitization Step"/>
 </p>
 
